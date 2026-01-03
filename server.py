@@ -14,24 +14,24 @@ def emotion_detector_route():
     """
     # Get the text to analyze from the request arguments
     text_to_analyze = request.args.get('textToAnalyze')
-    
+
     # Call the emotion_detector function
     response = emotion_detector(text_to_analyze)
-    
+
     # Extract the dominant emotion
     dominant_emotion = response['dominant_emotion']
-    
+
     # Check if dominant_emotion is None (error case)
     if dominant_emotion is None:
         return "Invalid text! Please try again!"
-    
+
     # Extract the emotions
     anger = response['anger']
     disgust = response['disgust']
     fear = response['fear']
     joy = response['joy']
     sadness = response['sadness']
-    
+
     # Format the output as requested
     formatted_response = (
         f"For the given statement, the system response is "
@@ -39,7 +39,7 @@ def emotion_detector_route():
         f"'joy': {joy} and 'sadness': {sadness}. "
         f"The dominant emotion is {dominant_emotion}."
     )
-    
+
     return formatted_response
 
 @app.route("/")
